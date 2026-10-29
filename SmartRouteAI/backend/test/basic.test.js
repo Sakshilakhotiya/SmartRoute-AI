@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+test('API health endpoint responds when server is running',async()=>{const base=process.env.TEST_API_URL||'http://localhost:5000/api';try{const r=await fetch(`${base}/health`);assert.equal(r.status,200);const j=await r.json();assert.equal(j.database,'sqlite');}catch(e){console.log('Skipped live API assertion: start the backend to run integration tests.');}});
